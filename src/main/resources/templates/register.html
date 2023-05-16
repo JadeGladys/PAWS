@@ -26,6 +26,9 @@
     <div class="d-flex flex-column align-content-end">
       <div class="app-auth-body mx-auto">
         <div class="app-auth-branding mb-4"><a class="app-logo" th:href="@{/}"><img class="logo-icon me-2" th:src="@{/images/Logo.png}" alt="logo"></a></div>
+        <div th:if="${param.fail}" class="alert alert-success">
+          Username or email already exists
+        </div>
         <h2 class="auth-heading text-center mb-4">Sign up to Paws</h2>
 
         <div class="auth-form-container text-start mx-auto">

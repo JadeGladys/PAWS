@@ -18,32 +18,30 @@ import java.util.stream.Collectors;
 @Service
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
     private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
 
-    public UserDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = userRepository.findFirstByUsername(username);
         if (user != null) {
-            Set<Role> roles = user.getRoles();
+            /*Set<Role> roles = user.getRoles();
             List<SimpleGrantedAuthority> authorities = roles.stream()
                     .map(role -> new SimpleGrantedAuthority(role.getName()))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList());*/
 
             User authUser = new User(
                     user.getEmail(),
                     user.getPassword(),
-                    authorities
+                    user.getRoles().stream().map((role) -> new SimpleGrantedAuthority(role.getName()))
+                            .collect(Collectors.toList())
             );
             return authUser;
-        } else {
+        }
+        else {
             throw new UsernameNotFoundException("Invalid username or password");
         }
     }
-
-
 }

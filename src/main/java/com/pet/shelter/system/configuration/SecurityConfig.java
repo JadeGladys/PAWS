@@ -25,15 +25,15 @@ public class SecurityConfig {
     public static PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests(authorize -> authorize
-                        .requestMatchers("/login", "/register", "/", "/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/admin").hasAnyAuthority("ADMIN")
-                        .anyRequest().authenticated()
-                )
+                .authorizeRequests()
+                .requestMatchers("/login", "/register", "/", "/css/**", "/js/**", "/images/**")
+                .permitAll()
+                .requestMatchers("/admin").hasAnyAuthority("ADMIN")
+                .and()
+                        //.anyRequest().authenticated()
 
                 .formLogin(form -> form
                         .loginPage("/login")

@@ -6,6 +6,7 @@ import com.pet.shelter.system.model.UserEntity;
 import com.pet.shelter.system.repository.RoleRepository;
 import com.pet.shelter.system.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
