@@ -3,27 +3,40 @@ package com.pet.shelter.system.controller;
 import com.pet.shelter.system.Dto.ApplicationDto;
 import com.pet.shelter.system.Dto.PetDto;
 import com.pet.shelter.system.model.Pet;
+import com.pet.shelter.system.model.Volunteer;
 import com.pet.shelter.system.service.ApplicationService;
 import com.pet.shelter.system.service.PetService;
+import com.pet.shelter.system.service.VolunteerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+
+import static com.pet.shelter.system.controller.VolunteerController.uploadDirectory;
 
 @Controller
 public class PetController {
     private PetService petService;
     private ApplicationService applicationService;
+    private VolunteerService volunteerService;
 
     @Autowired
-    public PetController(PetService petService, ApplicationService applicationService) {
+    public PetController(PetService petService, ApplicationService applicationService, VolunteerService volunteerService) {
         this.petService = petService;
         this.applicationService = applicationService;
+        this.volunteerService = volunteerService;
     }
+    public static String uploadDirectory = System.getProperty("user.dir") + "/src/main/java/imagedata";
 
     @GetMapping("/pets")
     public String listPets(Model model){
@@ -36,16 +49,12 @@ public class PetController {
     public String listPetsForAdmin(Model model){
         List<PetDto> pets = petService.findAllPets();
         List<ApplicationDto> application = applicationService.findAllApplication();
+        List<Volunteer> volunteers = volunteerService.findAllVolunteers();
         model.addAttribute("listPets", pets);
         model.addAttribute("list", application);
+        model.addAttribute("volunteers", volunteers);
         return "admin";
     }
-    /*@GetMapping("/admin")
-    public String listApplicationForAdmin(Model model){
-        List<ApplicationDto> application = applicationService.findAllApplication();
-        model.addAttribute("listapplication", application);
-        return "admin";
-    }*/
 
     @GetMapping("/pets/new")
     public String CreatePetForm(Model model){
@@ -69,10 +78,20 @@ public class PetController {
 
     @PostMapping("/pets/new")
     public String savePet(@Valid @ModelAttribute("pet") PetDto petDto,
-                          BindingResult result, Model model){
+                          BindingResult result, Model model, @RequestParam("photo") MultipartFile file){
         if(result.hasErrors()){
             model.addAttribute("pet", petDto);
             return "create_pet";
+        }
+        if (!file.isEmpty()) {
+            try {
+                String filename = petDto.getId() + file.getOriginalFilename().substring(file.getOriginalFilename().length() - 4);
+                Path filePath = Paths.get(uploadDirectory, filename);
+                Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+                petDto.setPhotoFilename(filename);
+                petDto.setPhotoPath(filePath.toString());
+            } catch (IOException e) {
+            }
         }
         petService.savePet(petDto);
         return "redirect:/pets";

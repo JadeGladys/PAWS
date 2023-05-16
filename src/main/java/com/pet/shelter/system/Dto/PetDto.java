@@ -25,6 +25,7 @@ public class PetDto {
     @NotEmpty(message = "Image Link should not be empty")
     private String imageLink;
     private String description;
-    private String status;
+    private String photoFilename;
+    private String photoPath;
     private List<ApplicationDto> applications;
 }

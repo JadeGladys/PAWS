@@ -19,7 +19,6 @@ public class PetMapper {
                 .breed(pet.getBreed())
                 .size(pet.getSize())
                 .description(pet.getDescription())
-                .status("pending")
                 .imageLink(pet.getImageLink())
                 .build();
         return petDto;
@@ -35,7 +34,6 @@ public class PetMapper {
                 .breed(pet.getBreed())
                 .size(pet.getSize())
                 .description(pet.getDescription())
-                .status(pet.getStatus())
                 .imageLink(pet.getImageLink())
                 .applications(pet.getApplications().stream().map((application) -> mapToApplicationDto(application)).collect(Collectors.toList()))
                 .build();

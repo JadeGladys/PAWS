@@ -29,7 +29,8 @@ public class Pet {
     private String size;
     private String imageLink;
     private String description;
-    private String status;
+    private String photoFilename;
+    private String photoPath;
 
     @OneToMany(mappedBy = "pet", cascade = CascadeType.REMOVE)
     private final List<Application> applications = new ArrayList<>();

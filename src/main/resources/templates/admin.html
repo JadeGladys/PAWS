@@ -95,12 +95,18 @@
         <br><br>
         <div class="row">
           <div class="col-md-6">
-            <table class="table table-hover">
-              <thead>
-                 <tr scope="col">Name</tr>
-                 <tr scope="col">Age</tr>
-                 <tr scope="col">Sex</tr>
-                 <tr scope="col">Breed</tr>
+            <table class="table table-hover table-striped">
+              <caption>List of pets</caption>
+              <thead class="thead-dark">
+                <tr>
+                 <th scope="col">Name</th>
+                 <th scope="col">Age</th>
+                 <th scope="col">Sex</th>
+                 <th scope="col">Breed</th>
+                 <th scope="col">View Action</th>
+                 <th scope="col">Edit Action</th>
+                 <th scope="col">Delete Action</th>
+                </tr>
               </thead>
               <tbody th:each="pet: ${listPets}">
                  <td scope="row" th:text="${pet.name}"></td>
@@ -115,17 +121,43 @@
           </div>
 
           <div class="col-md-6">
-            <table class="table table-hover">
-              <thead>
-              <tr scope="col">Name</tr>
-              <tr scope="col">Age</tr>
-              <tr scope="col">Sex</tr>
+            <table class="table table-hover table-striped">
+              <caption>List of pet application</caption>
+              <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Sex</th>
+                <th scope="col">Action</th>
+              </tr>
               </thead>
               <tbody th:each="adopt: ${list}">
               <td scope="row" th:text="${adopt.NID}"></td>
               <td th:text="${adopt.firstName}"></td>
               <td th:text="${adopt.lastName}"></td>
               <td><a th:href = "@{/applications/{id}(id=${adopt.id})}" class="btn-1">View</a></td>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table table-hover table-striped">
+              <caption>List of volunteers</caption>
+              <thead class="thead-dark">
+                 <tr>
+                   <th scope="col">Names</th>
+                   <th scope="col">NID</th>
+                   <th scope="col">Phone</th>
+                   <th scope="col">Email</th>
+                 </tr>
+              </thead>
+              <tbody th:each="vol: ${volunteers}">
+                 <td scope="row" th:text="${vol.fullName}"></td>
+                 <td th:text="${vol.nid}"></td>
+                 <td th:text="${vol.phone}"></td>
+                 <td th:text="${vol.email}"></td>
               </tbody>
             </table>
           </div>
