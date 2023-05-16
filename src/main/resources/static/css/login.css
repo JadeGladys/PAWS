@@ -1,0 +1,118 @@
+/* Global styles */
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles for the login form */
+.big-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+
+#wrapper {
+    background-color: #fff;
+    padding: 30px;
+    margin-top: 70px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 30%;
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-box {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-box label {
+    width: 100px;
+    font-weight: bold;
+}
+
+.input-box input[type="email"],
+.input-box input[type="text"],
+.input-box input[type="password"] {
+    width: 100%;
+    padding-top: -20px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-left: 10px;
+
+}
+
+.input-box input:focus {
+    outline: none;
+    border-color: #24d278;
+}
+
+.input-box .icon {
+    position: absolute;
+    left: 61%;
+    padding-right: 8px;
+    padding-top: 25px;
+    font-size: 1.2em;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.remember-forgot input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.remember-forgot a {
+    color: #333;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    color: #24d278;
+    text-decoration: underline;
+}
+
+.button {
+    background-color: #24d278;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 30%;
+    cursor: pointer;
+    width: 40%;
+}
+
+.button:hover {
+    background-color: #333;
+}
+
+.login-register {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-register a {
+    color: #24d278;
+    text-decoration: none;
+}
+
+.login-register a:hover {
+    text-decoration: underline;
+}
