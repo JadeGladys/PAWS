@@ -40,12 +40,14 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/pets}" >Shelter </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/pets/search}"> Search </a>
-                    </li>
+                    <div sec:authorize="isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/pets}" >Shelter </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/pets/search}"> Search </a>
+                        </li>
+                    </div>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/volunteer}">Volunteer</a>
                     </li>
@@ -59,7 +61,7 @@
                 <ul class="navbar-nav">
                     <div sec:authorize="hasAnyAuthority('ADMIN')">
                         <li class="nav-item">
-                            <a class="icon" th:href="@{/admin}"><ion-icon name="settings-outline"></ion-icon></a>
+                            <a class="icon" th:href="@{/admin}"><ion-icon name="settings-outline">Admin</ion-icon></a>
                         </li>
                     </div>
                     <li class="nav-item">

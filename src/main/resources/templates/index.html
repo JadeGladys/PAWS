@@ -43,12 +43,16 @@
           <li class="nav-item active">
             <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/pets}" >Shelter </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/pets/search}"> Search </a>
-          </li>
+          <div sec:authorize="isAuthenticated()">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/pets}" >Shelter </a>
+            </li>
+          </div>
+          <div sec:authorize="isAuthenticated()">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/pets/search}"> Search </a>
+            </li>
+          </div>
           <li class="nav-item">
             <a class="nav-link" th:href="@{/volunteer}">Volunteer</a>
           </li>
@@ -341,7 +345,7 @@
             <div class="img_container ">
               <div class="box b-1">
                 <div class="img-box">
-                  <img th:src="@{/images/dog.jpg}" alt="">
+                  <img th:src="@{/images/half.jpg}" alt="">
                 </div>
               </div>
             </div>
@@ -359,7 +363,7 @@
             <div class="img_container ">
               <div class="box b-1">
                 <div class="img-box">
-                  <img th:src="@{/images/dog.jpg}" alt="">
+                  <img th:src="@{/images/blacknwhitecat.jpg}" alt="">
                 </div>
               </div>
             </div>
@@ -368,7 +372,7 @@
             <div class="img_container ">
               <div class="box b-1">
                 <div class="img-box">
-                  <img th:src="@{/images/dog.jpg}" alt="">
+                  <img th:src="@{/images/husky.jpg}" alt="">
                 </div>
               </div>
             </div>

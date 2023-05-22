@@ -8,7 +8,6 @@ import java.util.List;
 
 @Data
 @Builder
-
 public class PetDto {
     private long id;
     @NotEmpty(message = "Name should not be empty")

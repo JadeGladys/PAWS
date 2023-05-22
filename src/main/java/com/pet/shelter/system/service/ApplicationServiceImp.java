@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 import static com.pet.shelter.system.mapper.ApplicationMapper.mapToApplication;
 import static com.pet.shelter.system.mapper.ApplicationMapper.mapToApplicationDto;
-import static com.pet.shelter.system.mapper.PetMapper.mapToPetDto;
 
 @Service
 public class ApplicationServiceImp implements ApplicationService{

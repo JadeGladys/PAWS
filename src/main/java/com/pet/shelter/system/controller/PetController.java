@@ -22,13 +22,11 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-import static com.pet.shelter.system.controller.VolunteerController.uploadDirectory;
-
 @Controller
 public class PetController {
-    private PetService petService;
-    private ApplicationService applicationService;
-    private VolunteerService volunteerService;
+    private final PetService petService;
+    private final ApplicationService applicationService;
+    private final VolunteerService volunteerService;
 
     @Autowired
     public PetController(PetService petService, ApplicationService applicationService, VolunteerService volunteerService) {

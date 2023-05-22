@@ -1,6 +1,5 @@
 package com.pet.shelter.system.controller;
 
-import com.pet.shelter.system.Dto.PetDto;
 import com.pet.shelter.system.Dto.RegistrationDto;
 import com.pet.shelter.system.model.UserEntity;
 import com.pet.shelter.system.service.PetService;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
 @Controller
 public class AuthController {
     private UserService userService;
@@ -25,6 +22,10 @@ public class AuthController {
     public AuthController(UserService userService, PetService petService) {
         this.userService = userService;
         this.petService = petService;
+    }
+    @GetMapping("/about")
+    public String aboutPage(){
+        return "about";
     }
     @GetMapping("/login")
     public String loginPage(){
