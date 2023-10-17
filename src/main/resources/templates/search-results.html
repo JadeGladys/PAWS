@@ -46,7 +46,9 @@
             <li class="nav-item">
               <a class="nav-link" th:href="@{/pets}" >Shelter </a>
             </li>
-            <li class="nav-item">
+          </div>
+          <div sec:authorize="isAuthenticated()">
+            <li class="nav-item active">
               <a class="nav-link" th:href="@{/pets/search}"> Search </a>
             </li>
           </div>
@@ -63,7 +65,7 @@
         <ul class="navbar-nav">
           <div sec:authorize="hasAnyAuthority('ADMIN')">
             <li class="nav-item">
-              <a class="icon" th:href="@{/admin}"><ion-icon name="settings-outline">Admin</ion-icon></a>
+              <a class="icon" th:href="@{/admin}"><ion-icon name="settings-outline"></ion-icon></a>
             </li>
           </div>
           <li class="nav-item">
@@ -274,7 +276,8 @@
 </section>
 <!-- end  footer section -->
 
-
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">

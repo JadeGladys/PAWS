@@ -2,8 +2,12 @@ package com.pet.shelter.system.controller;
 
 import com.pet.shelter.system.Dto.ApplicationDto;
 import com.pet.shelter.system.model.Volunteer;
+import com.pet.shelter.system.repository.VolunteerRepo;
 import com.pet.shelter.system.service.VolunteerService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,4 +69,40 @@ public class VolunteerController {
         model.addAttribute("volunteer", volunteer);
         return "viewvolunteer";
     }
+
+//    @GetMapping("sendMail/{id}")
+//    public ResponseEntity<Volunteer> orderedMail(@PathVariable("id") String id){
+//        Volunteer ordered = volunteerService.findVolunteerById(id);
+//        sendmail(ordered);
+//        return new ResponseEntity<Volunteer>(HttpStatus.OK);
+//    }
+//
+//    private void sendmail(Volunteer volunteer){
+//        final String emailToRecipient = volunteer.getEmail();
+//        final String emailSubject = "truckIT order";
+//        final String emailMessage = "<html>" +
+//                "<body style=\"font-family: Arial, sans-serif;\">" +
+//                "<p>Dear Sir/Madam,</p>" +
+//                "<p>Thank you for ordering with truckIT. Your delivery is now starting anytime soon.</p>" +
+//                "<p>Order Details:</p>" +
+//                "<ul>" +
+//                "<li><strong>Order ID:</strong> " + volunteer.getNid() + "</li>" +
+//                "<li><strong>Customer Name:</strong> " + volunteer.getFullName() + "</li>" +
+//                "<li><strong>Delivery Address:</strong> " + volunteer.getLevelOfCommitment() + "</li>" +
+//                "<li><strong>Product:</strong> " + volunteer.getEmail() + "</li>" +
+//                "</ul>" +
+//                "<p>truckIT developers, MaeSTRo</p>" +
+//                "</body>" +
+//                "</html>";
+//
+//        mailSender.send(new MimeMessagePreparator() {
+//            @Override
+//            public void prepare(MimeMessage mimeMessage) throws Exception {
+//                MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+//                mimeMessageHelper.setTo(emailToRecipient);
+//                mimeMessageHelper.setText(emailMessage, true);
+//                mimeMessageHelper.setSubject(emailSubject);
+//            }
+//        });
+//    }
 }
